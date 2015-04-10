@@ -5,6 +5,10 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Container;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 
 
@@ -25,6 +29,9 @@ public class GUITest extends ApplicationAdapter {
 	private Table table;
 	private ShapeRenderer shapeRenderer;
 	
+	//Skin
+	Skin skin;
+	
 	@Override
 	public void create () {
 		//uIWidgetTest.validate();
@@ -33,6 +40,13 @@ public class GUITest extends ApplicationAdapter {
 		stage = new Stage();
 		Gdx.input.setInputProcessor(stage);
 		table = new Table();
+		
+		//Skin
+		skin = new Skin(Gdx.files.internal("uiskin.json"));
+		
+		Label label = new Label("Hello World Label", skin);
+		table.add(label);
+		
 		table.setFillParent(true);//Preenche o tamanho baseado no seu pai(no caso stage)
 		stage.addActor(table);//Adiciona o actor para um pai(no caso stage)
 		shapeRenderer = new ShapeRenderer();//Renderizador utilizado para fazer o debug do draw table
